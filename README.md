@@ -1,1 +1,1 @@
-スライドは[こちら](https://github.com/ymattu/DSLT/slide.html)
+スライドは[こちら](https://ymattu.github.io/DSLT/slide.html)
