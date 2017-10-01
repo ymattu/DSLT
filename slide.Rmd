@@ -1,0 +1,151 @@
+---
+title: "R でもでる! <br> 日本語テキストマイニング"
+author: "@y__mattu"
+date: "データ分析・機械学習 LT 会"
+output:
+  revealjs::revealjs_presentation:
+    transition: convex
+    css: for_revealjs.css
+    theme: sky
+    highlight: kate
+    center: true
+    self_contained: false
+    reveal_plugins: ["chalkboard"]
+    reveal_options:
+      slideNumber: true
+      chalkboard:
+        theme: whiteboard
+pandoc_args: [
+  '--from', 'markdown+autolink_bare_uris+tex_math_single_backslash-implicit_figures'
+]
+---
+
+```{r eval=TRUE, echo=FALSE, warning=FALSE, message=FALSE, comment=""}
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      comment = "",
+                      fig.height = 10,
+                      fig.width = 10,
+                      out.height = 600,
+                      out.width = 400)
+options(dplyr.print_max = 1e9)
+```
+
+
+# はじめに
+
+## 誰？
+
+<div class="column1">
+- 松村優哉
+- <u>Twitter</u>: **y\_\_mattu**
+- <u>GitHub</u>: **ymattu**
+- M1
+- 計量経済学、ベイズ統計、因果推論、マーケティング
+- 言語: R, SAS, Python
+- https://ymattu.github.io/
+- http://y-mattu.hatenablog.com/
+- Tokyo.R 運営チーム
+</div>
+
+<div class="column2">
+![icon](./slide_img/twitter_icon.jpg)
+</div>
+
+## アルバイトとか
+- コミュニケーションアプリの分析
+- Web 広告のログ解析
+- 電子コミックと医療システムに関する解析と開発 <br> ←イマココ
+- たまに受託
+
+## 著書(共著)
+![book](./slide_img/datasci.jpg)
+
+## 作ったパッケージ
+### [MlBayesOpt](https://github.com/ymattu/MlBayesOpt)
+- 機械学習のパラメーターをベイズ最適化でチューニングする R パッケージ
+- メンテ頑張ります...
+
+### [rjumanpp](https://github.com/ymattu/rjumanpp)
+- 形態素解析機 JUMAN++の R ラッパー
+- 最低限の機能しかないのでメンテ頑張ります...
+
+
+## 今日の話
+※特定の言語・ライブラリをディスるものではありません
+
+- 資料は GitHub にアップロードしています
+
+
+
+# こんな話がある
+## テキストマイニングといえば <br> Python でしょ。
+
+# 確かに一昔(2-3 年)前まではそうでした {#ago}
+## 充実したモジュール
+- 形態素解析
+    - MeCab
+    - JUMAN++(PyKNP)
+- 自然言語処理
+    - gensim
+- 機械学習
+    - scikit-learn
+    - tensorflow
+
+# 昔も R でも <br> (頑張れば)できた
+
+# 今は R で <br> そんなに頑張らなくても <br> できます
+
+# 本当に?
+
+# 本当です。
+
+# 僕らがまず目指すところ
+
+## 単語がスペースで区切られてる状態(分かち書き)
+```{r echo=FALSE}
+library(tidyverse)
+txt <- data_frame(id = c(1:4),
+                text = c("私 は 新しい スマートフォン を 買っ た",
+                         "今夜 は ミルクティ を 飲む",
+                         "私 に は 外国人参政権 が ある",
+                         "今夜 は クライアント 対応 で 眠れ ない だろ う"))
+knitr::kable(txt)
+```
+
+## 分かち書きされていれば、<br>たいていのことは <br> 用意された関数でできてしまいます。
+
+## 「関数」を用意してくれるパッケージたち
+- テキストデータ特有の前処理から簡単な解析(TF-IDF くらい)まで
+    - stringr
+    - tidytext
+- テキストデータ特有のモデル(Word2Vec とか)
+    - text2vec
+
+- その他機械学習
+    - e1071(SVM)
+    - RandomForest, ranger(RF)
+    - LDA, topicmodels(LDA)
+
+# 肝心の分かち書き
+## もちろんパッケージがあります
+- RMeCab(MeCab)
+- rjumanpp(JUMAN++)
+
+## 詳しくは
+[こちら](https://ymattu.github.io/TokyoR64/apply/apply.html#/)をご覧ください。
+
+
+# まとめ
+## Python もいいけど R もいいよ。
+
+## R でテキストマイニング <br> 詳しくは
+<div class="column1">
+- [R によるテキストマイニング入門](https://www.amazon.co.jp/R%E3%81%AB%E3%82%88%E3%82%8B%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%9E%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%E5%85%A5%E9%96%80-%E7%9F%B3%E7%94%B0-%E5%9F%BA%E5%BA%83/dp/4627848420/ref=pd_sim_14_2?_encoding=UTF8&psc=1&refRID=EFB8WVH6SXTMJJD206PG)
+</div>
+
+<div class="column2">
+![](./slide_img/rtextmining.jpg)
+</div>
