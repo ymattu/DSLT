@@ -1,5 +1,5 @@
 ---
-title: "R でもでる! <br> 日本語テキストマイニング"
+title: "R でもできる! <br> 日本語テキストマイニング"
 author: "@y__mattu"
 date: "データ分析・機械学習 LT 会"
 output:
